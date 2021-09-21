@@ -34,8 +34,9 @@ function calculateProfitAndLoss()
    var sellingPrice= Number(currentPrice.value);
    var noOfStocks= Number(quantity.value);
 
-
-    if(costPrice<sellingPrice)
+    if(costPrice && sellingPrice && noOfStocks)
+    {
+        if(costPrice<sellingPrice)
         {
             var [profit, profitPercentage]= calculateProfit(costPrice,sellingPrice,noOfStocks);
             Output.innerText= `Hey! the profit is ${profit} and the percent is ${profitPercentage}%`;
@@ -45,5 +46,8 @@ function calculateProfitAndLoss()
             var [loss, lossPercentage]=calculateLoss(costPrice,sellingPrice,noOfStocks);
             Output.innerText= `Oops! the loss is ${loss} and the percent is ${lossPercentage}%`;
         }
+    }
+    else
+        alert("Please fill out all the feilds");
 
 }
