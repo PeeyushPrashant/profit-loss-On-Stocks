@@ -36,16 +36,22 @@ function calculateProfitAndLoss()
 
     if(costPrice && sellingPrice && noOfStocks)
     {
-        if(costPrice<sellingPrice)
+        if(costPrice>0 && sellingPrice>0 && noOfStocks>0 )
         {
-            var [profit, profitPercentage]= calculateProfit(costPrice,sellingPrice,noOfStocks);
-            Output.innerText= `Hey! the profit is ${profit} and the percent is ${profitPercentage}%`;
+            if(costPrice<sellingPrice)
+            {
+                var [profit, profitPercentage]= calculateProfit(costPrice,sellingPrice,noOfStocks);
+                Output.innerText= `Hey! the profit is ${profit} and the percent is ${profitPercentage}%`;
+            }
+        else 
+            {
+                var [loss, lossPercentage]=calculateLoss(costPrice,sellingPrice,noOfStocks);
+                Output.innerText= `Oops! the loss is ${loss} and the percent is ${lossPercentage}%`;
+            }
         }
-    else 
-        {
-            var [loss, lossPercentage]=calculateLoss(costPrice,sellingPrice,noOfStocks);
-            Output.innerText= `Oops! the loss is ${loss} and the percent is ${lossPercentage}%`;
-        }
+    else{
+       Output.innerText="All input values should be positive";
+    }  
     }
     else
         alert("Please fill out all the feilds");
